@@ -27,12 +27,11 @@ async def auditar_sitio(url):
 
         prompt = f"""
 Actúa como un Consultor Senior de SEO y Accesibilidad (WCAG).
-Analiza esta captura de pantalla y el código HTML adjunto para el sitio: {url}
+Analiza esta captura de pantalla y el código HTML adjunto solo del home para el sitio: {url}
 TAREAS:
-1. SEO: ¿Hay una jerarquía clara de etiquetas H1, H2?
+1. UI: ¿Los colores son armónicos o hay alguna sección que distraiga o llame la atensión del usuario?
 2. Accesibilidad: ¿Los botones tienen etiquetas descriptivas (aria-labels)?
 3. Visual: ¿Hay elementos que se cortan o no cargan bien?
-4. Código: Revisa este fragmento del DOM y busca errores: {html_content[:5000]}
 Responde con un formato de 'Hallazgo' y 'Sugerencia técnica'.
 """
 
