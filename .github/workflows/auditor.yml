@@ -1,0 +1,41 @@
+name: Auditor SEO y Accesibilidad - by Jonathan Rodríguez
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL del sitio a auditar'
+        required: true
+        default: 'https://www.heb.com.mx/'
+
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Instalar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: |
+          pip install playwright google-genai pillow
+          playwright install chromium
+          playwright install-deps chromium
+
+      - name: Ejecutar auditor
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python auditor.py "${{ github.event.inputs.url }}"
+
+      - name: Guardar informe como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: informe-auditoria
+          path: |
+            informe_auditoria.txt
+            audit_screenshot.png
