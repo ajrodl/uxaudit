@@ -26,11 +26,8 @@ async def auditar_sitio(url):
             image_data = base64.standard_b64encode(f.read()).decode("utf-8")
 
         prompt = f"""
-Actúa como un Consultor Senior de SEO y Accesibilidad (WCAG).
-Analiza esta captura de pantalla para el sitio: {url}
-TAREAS:
-1. UI: ¿Los colores son armónicos o hay alguna sección que distraiga o llame la atensión del usuario?
-Responde con un formato de 'Hallazgo' y 'Sugerencia técnica'.
+1. Confirma en el reporte si se ha posido tomar la captura de pantalla.
+2. Lista el nombre del sitio
 """
 
         print("Analizando con Gemini...")
